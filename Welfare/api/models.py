@@ -14,6 +14,10 @@ class UserInfo(models.Model):
     user_img = models.CharField(max_length=100, default="default.jpg")
     create_time = models.DateTimeField(auto_now_add=True, blank=True)
 
+    class Meta:
+        verbose_name = "用户管理"
+        verbose_name_plural = "用户管理"
+
 
 class UserToken(models.Model):
     user = models.OneToOneField(UserInfo, on_delete=models.CASCADE)
@@ -25,12 +29,23 @@ class Organization(models.Model):
     des = models.CharField(max_length=200)
     create_time = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "组织管理"
+        verbose_name_plural = "组织管理"
+
 
 class Activity(models.Model):
     name = models.CharField(max_length=32)
     des = models.CharField(max_length=2000)
     sponsor = models.ForeignKey(Organization, on_delete=models.CASCADE)
     create_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "活动管理"
+        verbose_name_plural = "活动管理"
 
 
 class Applicant(models.Model):

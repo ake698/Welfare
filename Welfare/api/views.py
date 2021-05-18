@@ -238,8 +238,8 @@ class MessageBoardView(APIView):
 
     def get(self, request):
         apps = MessageBoard.objects.all().order_by("-id")
-        if request.user.user_type == 1:
-            apps = apps.filter(user=request.user)
+        # if request.user.user_type == 1:
+        #     apps = apps.filter(user=request.user)
         data = request.query_params
         if "activity_id" in data.keys():
             apps = apps.filter(activity__id=int(data["activity_id"]))
